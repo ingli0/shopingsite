@@ -7,10 +7,10 @@ button, button:focus {
 }
 
 /* typography classes */
-
-.xroma{
+ 
+ .xroma{
     text-emphasis-color: red;
-}
+ }
 .size{
     height:200px;
     width:231px;
@@ -27,7 +27,7 @@ button, button:focus {
     margin-right: auto;
     width: 75%;
     flex: 75%;
-    padding: 25px;
+	  padding: 25px;
 }
 
 
@@ -127,7 +127,7 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
-}
+  }
 
 
 /*# sourceMappingURL=style.css.map */
