@@ -1,8 +1,13 @@
+<?php
+    $item_id=$_GET['item_id']??1;
+    foreach ($product->getData() as $item):
+        if($item['item_id']==$item_id):
+?>
 <section id="product" class="py-3">
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <img src="./assets/product/iphone.webp" alt="ophone" class="img-fluid">
+                <img src="<?php echo $item['item_image']??"./assets/product/1.png" ?>" alt="ophone" class="img-fluid">
                 <div class="form-row pt-4 font-size-16 font-baloo">
                     <div class="col">
                         <button type="submit" class="btn btn-danger form-control">Proceed to buy</button>
@@ -13,8 +18,8 @@
                 </div>
             </div>
             <div class="col-sm-6 py-5">
-                <h5 class="font-baloo font-size-20">Iphone 13</h5>
-                <small>BY APPLE</small>
+                <h5 class="font-baloo font-size-20"><?php echo $item['item_name']??"Unknow"; ?></h5>
+                <small>BY <?php echo $item['item_brand']??"Brand"; ?></small>
                 <div class="d-flex">
                     <div class="rating text-warning font-size-12">
                                 <span>
@@ -39,7 +44,7 @@
                 <table class="my-3">
                     <tr class="font-rale font-size-14">
                         <td>Deal price</td>
-                        <td class="font-size-20 text-danger">$<span>1050.99</span><small class="text-dark font-size-12">&nbsp;&nbsp; inclusive of all taxes</small></td>
+                        <td class="font-size-20 text-danger">$<span><?php echo $item['item_price']??0; ?></span><small class="text-dark font-size-12">&nbsp;&nbsp; inclusive of all taxes</small></td>
                     </tr>
                     <tr class="font-rale font-size-14">
                         <td>You save</td>
@@ -141,3 +146,7 @@
     </div>
 
 </section>
+<?php
+        endif;
+        endforeach;
+    ?>
