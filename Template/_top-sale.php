@@ -3,6 +3,10 @@
 $product_shuffle= $product->getData();
 shuffle($product_shuffle);
 
+if($_SERVER['REQUEST_METHOD']=="POST"){
+    //call method add to cart
+    $Cart->addToCart($_POST['item_id'],$_POST['user_id']);
+}
 ?>
 <section id="top-sale">
     <div class="container py-5">
@@ -34,7 +38,11 @@ shuffle($product_shuffle);
                     </span>
 
                         </div>
-                        <button type="submit" class="btn btn-warning font-size-12">Add to cart</button>
+                         <form method="post">
+                             <input type="hidden" name="item_id" value="<?php echo $item['item_id']??'1'; ?>">
+                             <input type="hidden" name="user_id" value="<?php echo 1; ?>">
+                             <button type="submit" name="top_sale_submit" class="btn btn-warning font-size-12">Add to cart</button>
+                         </form>
                     </div>
                 </div>
             </div>
