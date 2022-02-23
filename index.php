@@ -5,12 +5,13 @@ ob_start();
 ?>
 <?php
 //include header.php file
+
     include('Template/_banner-area.php');
 
 
 
     //include header.php file
-    include('Template/_top-sale.php');
+include('Template/_top-sale.php');
 
 
     include('Template/_special-price.php');
@@ -18,6 +19,7 @@ ob_start();
     include('Template/_banner.php');
 
     include('Template/_blogs.php');
+
 ?>
 
 
