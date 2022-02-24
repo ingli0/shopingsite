@@ -79,11 +79,20 @@ $(document).ready(function(){
     // click on qty up button
     $qty_up.click(function(e){
         let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
-        if($input.val() >= 1 && $input.val() <= 9){
-            $input.val(function(i, oldval){
-                return ++oldval;
-            });
-        }
+        let $price =$(`.product_price`)
+        //change product price using ajax call
+        $.ajax({url: "template/ajax.php", type : 'post', data : { itemid : $(this).data("id")}, success: function(result){
+                 let obj=JSON.parse(result);
+                 let item_price =obj[0]['item_price'];
+                if($input.val() >= 1 && $input.val() <= 9){
+                    $input.val(function(i, oldval){
+                        return ++oldval;
+                    });
+                }
+
+                }});
+
+
     });
 
     // click on qty down button
