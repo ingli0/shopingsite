@@ -1,11 +1,17 @@
-<!--shopping cart section-->
+<!-- Shopping cart section  -->
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    if (isset($_POST['delete-cart-submit'])) {
+    if (isset($_POST['delete-cart-submit'])){
         $deletedrecord = $Cart->deleteCart($_POST['item_id']);
     }
+
+    // save for later
+    if (isset($_POST['wishlist-submit'])){
+        $Cart->saveForLater($_POST['item_id']);
     }
+}
 ?>
+
 <section id="cart" class="py-3 mb-5">
     <div class="container-fluid w-75">
         <h5 class="font-baloo font-size-20">Shoping cart</h5>
