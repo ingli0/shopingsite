@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                     foreach ($product->getData('cart') as $item):
                         $cart = $product->getProduct($item['item_id']);
-                        $subtotal[]=array_map(function ($item){
+                        $subTotal[] = array_map(function ($item){
 
                 ?>
                 <!-- cart item -->
@@ -43,27 +43,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <!--  !product rating-->
 
                         <!-- product qty -->
+                        <!-- product qty -->
                         <div class="qty d-flex pt-2">
                             <div class="d-flex font-rale w-25">
-                                <button class="qty-up border bg-light" data-id="<?php echo $item['item_id']??'0'; ?>"><i class="fas fa-angle-up"></i></button>
-                                <input type="text" data-id="<?php echo $item['item_id']??'0'; ?>" class="qty_input border px-2 w-100 bg-light" disabled value="1" placeholder="1">
-                                <button data-id="<?php echo $item['item_id']??'0'; ?>" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
+                                <button class="qty-up border bg-light" data-id="<?php echo $item['item_id'] ?? '0'; ?>"><i class="fas fa-angle-up"></i></button>
+                                <input type="text" data-id="<?php echo $item['item_id'] ?? '0'; ?>" class="qty_input border px-2 w-100 bg-light" disabled value="1" placeholder="1">
+                                <button data-id="<?php echo $item['item_id'] ?? '0'; ?>" class="qty-down border bg-light"><i class="fas fa-angle-down"></i></button>
                             </div>
 
                             <form method="post">
-                                <input type="hidden" value="<?php echo $item['item_id']?>" name="item_id">
+                                <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
                                 <button type="submit" name="delete-cart-submit" class="btn font-baloo text-danger px-3 border-right">Delete</button>
                             </form>
 
-                            <button type="submit" class="btn font-baloo text-danger">Save for Later</button>
+                            <form method="post">
+                                <input type="hidden" value="<?php echo $item['item_id'] ?? 0; ?>" name="item_id">
+                                <button type="submit" name="wishlist-submit" class="btn font-baloo text-danger">Save for Later</button>
+                            </form>
+
+
                         </div>
+                        <!-- !product qty -->
                         <!-- !product qty -->
 
                     </div>
-
                     <div class="col-sm-2 text-right">
                         <div class="font-size-20 text-danger font-baloo">
-                            €<span class="product_price>" data-id="<?php echo $item['item_price'] ??'0';?>"></span>
+                            <span class="product_price" data-id="<?php echo $item['item_id'] ?? '0'; ?>"><?php echo $item['item_price'] ?? 0; ?></span>
                         </div>
                     </div>
                 </div>
@@ -80,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <div class="sub-total border text-center mt-2">
                     <h6 class="font-size-12 font-rale text-success py-3"><i class="fas fa-check"></i> Your order is eligible for FREE Delivery.</h6>
                     <div class="border-top py-4">
-                        <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subtotal) ? count($subtotal) : 0; ?> item):&nbsp; <span class="text-danger"><span class="text-danger" id="deal-price"><?php echo isset($subtotal) ? $Cart->getSum($subtotal) : 0; ?> €</span> </span> </h5>
+                        <h5 class="font-baloo font-size-20">Subtotal ( <?php echo isset($subTotal) ? count($subTotal) : 0; ?> item):&nbsp; <span class="text-danger"><span class="text-danger" id="deal-price"><?php echo isset($subTotal) ? $Cart->getSum($subTotal) : 0; ?> €</span> </span> </h5>
                         <button type="submit" class="btn btn-warning mt-3">Proceed to Buy</button>
                     </div>
                 </div>
